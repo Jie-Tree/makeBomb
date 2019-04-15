@@ -1,8 +1,9 @@
 # Make Bomb
 
-## usage
-
 src from [**Daily-Learning**](https://github.com/chaohu/Daily-Learning/tree/0e8d14a3497ad319eda20bc4682cec08d5d6fb08/Foundation-of-CS/ics14_lab1-3/lab2)
+
+
+## usage
 
 E ： Python2.7
 
