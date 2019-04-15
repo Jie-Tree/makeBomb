@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>make bomb</title>
+	<style type="text/css">
+		body{
+			background-color: #E2E4CB;
+			margin: 0;
+		}
+		.top{
+			font-size: 9pt;
+			text-align: left;
+			width: 500px;
+			margin: 5px auto;
+		}
+		.login_form{
+			padding-top: 15px;
+			padding-bottom: 20px;
+			width: 500px;
+			background-color: skyblue;
+			border: 1px solid blue;
+			border-radius: 15px;
+			margin: 0px auto;
+		}
+		.login_form table{
+			margin: 0px auto;
+			color: #282923;
+		}
+		.login_form input{
+			border: 0;
+			border-radius: 2px;
+			height: 24px;
+		}
+		.login_form table td{
+			padding-top: 5px;
+			text-align: right;
+		}
+		.form_sub{
+			margin: 0px auto;
+		}
+		.form_sub input{
+			display: block;
+			background-color: #18A689;
+			border: 0;
+			border-radius: 4px;
+			height: 30px;
+			width: 200px;
+			color: #FFF;
+			margin: 0px auto;
+			margin-top: 15px;
+		}
+		.error{
+			color: red;
+			font-size: 10pt;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+	<div class="login_form">
+		<form action="http://172.31.76.85:8001" id="login_form" method="get" name="login_form">
+			<table>
+				<tbody>
+					<tr>
+						<td>姓名：</td>
+						<td><input type="text" name="username" /></td>
+					</tr>
+					<tr>
+						<td>学号：</td>
+						<td><input type="text" name="password" /></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="form_sub">
+				<input type="submit" value="确定" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>
