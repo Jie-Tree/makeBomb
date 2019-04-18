@@ -2,7 +2,8 @@
 # encoding=utf-8
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-
+from SocketServer import ThreadingMixIn
+import threading
 
 class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -20,17 +21,19 @@ class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
                 self.end_headers()  # 结束处理
                 self.wfile.write(f.read())  # 通过wfile将下载的页面传给客户
                 f.close()  # 关闭
+
         except IOError:
             self.send_error(404, 'file not found: %s' % self.path)
 
 
-class CustomHTTPServer(HTTPServer):
-    def __init__(self, host, port):
-        HTTPServer.__init__(self, (host, port), CustomHTTPRequestHandler)
+class CustomHTTPServer(ThreadingMixIn, HTTPServer):
+    pass
+    # def __init__(self, host, port):
+    #     HTTPServer.__init__(self, (host, port), CustomHTTPRequestHandler)
 
 
 def main():
-    server = CustomHTTPServer('172.31.76.85', 8000)
+    server = CustomHTTPServer(('172.31.76.85', 8000), CustomHTTPRequestHandler)
     server.serve_forever()
 
 
