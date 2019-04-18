@@ -3,7 +3,7 @@
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import os
-import shutil
+from SocketServer import ThreadingMixIn
 
 
 class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -48,12 +48,13 @@ class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
 
 
 class CustomHTTPServer(HTTPServer):
-    def __init__(self, host, port):
-        HTTPServer.__init__(self, (host, port), CustomHTTPRequestHandler)
+    pass
+    # def __init__(self, host, port):
+    #     HTTPServer.__init__(self, (host, port), CustomHTTPRequestHandler)
 
 
 def main():
-    server = CustomHTTPServer('172.31.76.85', 8001)
+    server = CustomHTTPServer(('172.31.76.85', 8001), CustomHTTPRequestHandler)
     server.serve_forever()
 
 

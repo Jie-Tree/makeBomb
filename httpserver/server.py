@@ -3,7 +3,6 @@
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from SocketServer import ThreadingMixIn
-import threading
 
 class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
