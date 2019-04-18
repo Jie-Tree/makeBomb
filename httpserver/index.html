@@ -61,13 +61,16 @@
     <br>
     <br>
     <br>
+	<br>
+    <br>
+    <br>
 	<div class="login_form">
 		<form action="http://172.31.76.85:8001" id="login_form" method="get" name="login_form">
 			<table>
 				<tbody>
 					<tr>
 						<td>姓名(拼音)：</td>
-						<td><input type="text" name="username" /></td>
+						<td><input type="text" name="username" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/></td>
 					</tr>
 					<tr>
 						<td>学号：</td>

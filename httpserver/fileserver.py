@@ -19,24 +19,28 @@ class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
                 if 'password' in ss:
                     password = ss.split('=')[1]
             print username, password
-            bomb = MakeBomb(username, password)
-            bomb.makebomb()
-            # f=open(self.path[1:],'r') # 获取客户端输入的页面文件名称
-            # self.send_response(200)#如果正确返回200
-            # self.send_header('Content-type','text/html') #定义下处理的文件的类型
-            # self.end_headers()#结束处理
-            # self.wfile.write(f.read())#通过wfile将下载的页面传给客户
-            # f.close() #关闭
-            # f = open('904615562/bomb.c')
-            f = open('../'+password+'/bombs/bomb0/bomb')
-            self.send_response(200)
-            self.send_header('Content-type', 'application/octet-stream')
-            self.send_header("Content-disposition","attachment;filename=bomb")
-            self.end_headers()
-            self.wfile.write(f.read())
-            f.close()
-            os.system('cd .. ; rm -R '+password)
-            print 'delete--------'
+            if username is "" or password is "":
+                print "username or password is None"
+                self.send_response(404)
+            else:
+                bomb = MakeBomb(username, password)
+                bomb.makebomb()
+                # f=open(self.path[1:],'r') # 获取客户端输入的页面文件名称
+                # self.send_response(200)#如果正确返回200
+                # self.send_header('Content-type','text/html') #定义下处理的文件的类型
+                # self.end_headers()#结束处理
+                # self.wfile.write(f.read())#通过wfile将下载的页面传给客户
+                # f.close() #关闭
+                # f = open('904615562/bomb.c')
+                f = open('../' + password + '/bombs/bomb0/bomb')
+                self.send_response(200)
+                self.send_header('Content-type', 'application/octet-stream')
+                self.send_header("Content-disposition", "attachment;filename=bomb")
+                self.end_headers()
+                self.wfile.write(f.read())
+                f.close()
+                os.system('cd .. ; rm -R ' + password)
+                print 'delete--------'
 
         except Exception, e:
             print e
@@ -60,29 +64,32 @@ class MakeBomb():
 
     def makebomb(self):
 
-        userfolder = '../'+self.password
-        # folder = os.path.exists(userfolder)
-        # if not folder:
-        #     os.mkdir(self.password)
-        # else:
-        #     os.system('cd ..; rm -R '+self.password)
-        #     print 'folder existed'
+        try:
+            userfolder = '../' + self.password
+            # folder = os.path.exists(userfolder)
+            # if not folder:
+            #     os.mkdir(self.password)
+            # else:
+            #     os.system('cd ..; rm -R '+self.password)
+            #     print 'folder existed'
 
-        os.system(
-            'cd .. ; cp lab2 -R ' + self.password + ' ; cd ' + self.password
-        )
+            os.system(
+                'cd .. ; cp lab2 -R ' + self.password + ' ; cd ' + self.password
+            )
 
-        newstr = self.username+'('+self.password+')'
+            newstr = self.username + '(' + self.password + ')'
 
-        userfile = userfolder+'/src/makephases.pl'
+            userfile = userfolder + '/src/makephases.pl'
 
-        lines = open(userfile).readlines()
-        fp = open(userfile, 'w')
-        for s in lines:
-            fp.write(s.replace('username(password)', newstr))
-        fp.close()
+            lines = open(userfile).readlines()
+            fp = open(userfile, 'w')
+            for s in lines:
+                fp.write(s.replace('username(password)', newstr))
+            fp.close()
 
-        os.system('cd ../'+self.password + ' ; ./makebomb.pl -s ./src -b ./bombs')
+            os.system('cd ../'+self.password + ' ; ./makebomb.pl -s ./src -b ./bombs')
+        except BaseException, e:
+            print e
 
 
 if __name__ == '__main__':
